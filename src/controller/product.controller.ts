@@ -39,6 +39,8 @@ export async function updateProductHandler(
   }
 
   if (String(product.user) !== userId) {
+    console.log("na this bastard");
+
     return res.sendStatus(403);
   }
 

@@ -13,7 +13,8 @@ const deserializeUser = async (
     /^Bearer\s/,
     ""
   );
-  //   console.log(accessToken && "accessToken");
+  // console.log(accessToken && "accessToken");
+  console.log("accessToken", accessToken, "accessToken");
 
   const refreshToken = get(req, "headers.x-refresh");
 
@@ -23,12 +24,13 @@ const deserializeUser = async (
 
   const { decoded, expired } = verifyJwt(accessToken);
 
-  // console.log("decoded", decoded);
+  console.log("decoded", decoded);
   // console.log("expired", expired);
 
   if (decoded) {
     // @ts-ignore
-    res.locals.user = decoded._doc;
+    // res.locals.user = decoded._doc;
+    res.locals.user = decoded;
     // return next();
   }
 
