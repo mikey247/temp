@@ -4,8 +4,12 @@ import {
   createSessionHandler,
   deleteSessionHandler,
   getUserSessionsHandler,
+  googleOauthHandler,
 } from "./controller/session.controller";
-import { createUserHandler } from "./controller/user.controller";
+import {
+  createUserHandler,
+  getCurrentUser,
+} from "./controller/user.controller";
 import {
   createProductHandler,
   getProductHandler,
@@ -41,6 +45,10 @@ function routes(app: Express) {
   app.get("/api/sessions", requireUser, getUserSessionsHandler);
 
   app.delete("/api/sessions", requireUser, deleteSessionHandler);
+
+  app.get("/api/me", requireUser, getCurrentUser);
+
+  app.get("/api/sessions/oauth/google", googleOauthHandler);
 
   app.post(
     "/api/products",
